@@ -45,7 +45,9 @@ class BotmanagerPlugin(b3.plugin.Plugin):
         # Registering commands
         self._adminPlugin.registerCommand(self, 'enablebots', 60, self.cmd_enablebots)
         self._adminPlugin.registerCommand(self, 'disablebots', 60, self.cmd_disablebots)
-
+        
+        # Kick all bots on startup in case b3 crashes or gets restarted
+        self.console.write("kick allbots")
         timer = Timer(60, self.checkbots)
         timer.start()
 
